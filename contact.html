@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bagotville Masjid - Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Bagotville Masjid</div>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="prayer-times.html">Prayer Times</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="donations.html">Donations</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="quran.html">Quran</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle Dark Mode">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+        </nav>
+    </header>
+    <main>
+        <section class="contact">
+            <h1>Contact Us</h1>
+            <p>We’d love to hear from you!</p>
+            <form action="https://formspree.io/f/mwpvzqrz" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <input type="hidden" name="_subject" value="New Contact Form Submission from Bagotville Masjid Website">
+                <input type="hidden" name="_next" value="https://your-website.com/contact.html">
+                <button type="submit" class="button">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <h2>Visit Us</h2>
+                <p>Lot 147 Public Road, Bagotville, West Bank Demerara, Guyana</p>
+                <p>+592-626-6780 | masjidbagotville@gmail.com</p>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2023 Bagotville Masjid. All rights reserved.</p>
+        <p>Lot 147 Public Road, Bagotville, West Bank Demerara, Guyana | +592-626-6780 | masjidbagotville@gmail.com</p>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
