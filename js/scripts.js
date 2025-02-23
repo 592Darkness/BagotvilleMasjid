@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (document.getElementById('asr-time')) document.getElementById('asr-time').textContent = times.Asr;
             if (document.getElementById('maghrib-time')) document.getElementById('maghrib-time').textContent = times.Maghrib;
             if (document.getElementById('isha-time')) document.getElementById('isha-time').textContent = times.Isha;
-            if (document.getElementById('jumuah-time')) document.getElementById('jumuah-time').textContent = '12:20 PM';
+            if (document.getElementById('jumuah-time')) document.getElementById('jumuah-time').textContent = '12:20';
             console.log('Prayer times fetched successfully with lat/long');
         } catch (error) {
             console.error('Error fetching prayer times:', error);
