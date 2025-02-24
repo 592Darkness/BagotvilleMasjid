@@ -23,8 +23,78 @@
     <meta name="twitter:description" content="Welcome to Bagotville Masjid, serving the Muslim community in West Bank Demerara, Guyana since 1913. Learn about our prayer times, events, and community services.">
     <meta name="twitter:image" content="https://bagotvillemasjid.github.io/images/masjid-hero-light.webp">
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Preload Google Fonts and set font-display: swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" crossorigin>
+    
+    <!-- Inline Critical CSS for above-the-fold content -->
+    <style>
+        /* Critical CSS for hero and navigation */
+        .header {
+            background: linear-gradient(90deg, #007BFF, #FF6F61);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .hero {
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), #E8ECEF;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            display: inline-block;
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #007BFF;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0.8rem;
+        }
+        .hero-content p {
+            font-size: 0.9rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        /* Ensure basic text visibility while fonts load */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #F5F6F5;
+            color: #2C3E50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+    </style>
+    
+    <link rel="stylesheet" href="css/styles.css" media="all" onload="this.media='all'">
 </head>
 <body>
     <header class="header">
@@ -112,6 +182,6 @@
             <a href="#">Instagram</a>
         </div>
     </footer>
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
 </body>
 </html>
