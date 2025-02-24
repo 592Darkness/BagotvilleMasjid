@@ -175,6 +175,8 @@ main {
     margin: 0 auto;
 }
 
+/* Existing styles... */
+
 /* Hero section */
 .hero {
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), var(--light-gray);
@@ -200,6 +202,7 @@ main {
     object-fit: cover;
     opacity: 0.6;
     transition: opacity 0.3s ease;
+    will-change: opacity; /* Improve animation performance */
 }
 
 .light-theme-image {
@@ -217,6 +220,8 @@ main {
 .dark-theme .dark-theme-image {
     display: block;
 }
+
+/* Existing styles... */
 
 .hero-content {
     position: relative;
