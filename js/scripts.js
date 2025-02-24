@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const latitude = 6.8061; // Latitude for Bagotville, Guyana
             const longitude = -58.1817; // Longitude for Bagotville, Guyana
-            const response = await fetch(`https://api.aladhan.com/v1/timings/${new Date().toISOString().split('T')[0]}?latitude=${latitude}&longitude=${longitude}&method=2`);
+            const response = await fetch(`http://api.aladhan.com/v1/timings/${new Date().toISOString().split('T')[0]}?latitude=${latitude}&longitude=${longitude}&method=2`);
             const data = await response.json();
             const times = data.data.timings;
             if (document.getElementById('fajr-time')) document.getElementById('fajr-time').textContent = times.Fajr;
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (document.getElementById('asr-time')) document.getElementById('asr-time').textContent = times.Asr;
             if (document.getElementById('maghrib-time')) document.getElementById('maghrib-time').textContent = times.Maghrib;
             if (document.getElementById('isha-time')) document.getElementById('isha-time').textContent = times.Isha;
-            if (document.getElementById('jumuah-time')) document.getElementById('jumuah-time').textContent = '12:20';
+            if (document.getElementById('jumuah-time')) document.getElementById('jumuah-time').textContent = '[Custom Jumu\'ah Time]';
             console.log('Prayer times fetched successfully with lat/long');
         } catch (error) {
             console.error('Error fetching prayer times:', error);
