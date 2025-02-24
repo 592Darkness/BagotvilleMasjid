@@ -13,7 +13,7 @@
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Bagotville Masjid - Home">
     <meta property="og:description" content="Welcome to Bagotville Masjid, serving the Muslim community in West Bank Demerara, Guyana since 1913. Learn about our prayer times, events, and community services.">
-    <meta property="og:image" content="https://bagotvillemasjid.github.io/images/masjid-hero-light.jpg">
+    <meta property="og:image" content="https://bagotvillemasjid.github.io/images/masjid-hero-light.webp">
     <meta property="og:url" content="https://bagotvillemasjid.github.io/index.html">
     <meta property="og:type" content="website">
     
@@ -21,7 +21,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bagotville Masjid - Home">
     <meta name="twitter:description" content="Welcome to Bagotville Masjid, serving the Muslim community in West Bank Demerara, Guyana since 1913. Learn about our prayer times, events, and community services.">
-    <meta name="twitter:image" content="https://bagotvillemasjid.github.io/images/masjid-hero-light.jpg">
+    <meta name="twitter:image" content="https://bagotvillemasjid.github.io/images/masjid-hero-light.webp">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
@@ -56,8 +56,16 @@
     <main>
         <section class="hero">
             <div class="hero-image">
-                <img src="images/masjid-hero-light.jpg" alt="Bagotville Masjid Exterior (Light Theme)" class="light-theme-image">
-                <img src="images/masjid-hero-dark.jpg" alt="Bagotville Masjid Exterior (Dark Theme)" class="dark-theme-image">
+                <picture>
+                    <source srcset="images/masjid-hero-light.webp" type="image/webp" loading="lazy">
+                    <source srcset="images/masjid-hero-light.jpg" type="image/jpeg" loading="lazy">
+                    <img src="images/masjid-hero-light.jpg" alt="Bagotville Masjid Exterior (Light Theme)" class="light-theme-image" loading="lazy">
+                </picture>
+                <picture>
+                    <source srcset="images/masjid-hero-dark.webp" type="image/webp" loading="lazy">
+                    <source srcset="images/masjid-hero-dark.jpg" type="image/jpeg" loading="lazy">
+                    <img src="images/masjid-hero-dark.jpg" alt="Bagotville Masjid Exterior (Dark Theme)" class="dark-theme-image" loading="lazy">
+                </picture>
             </div>
             <div class="hero-content">
                 <h1>Welcome to Bagotville Masjid</h1>
