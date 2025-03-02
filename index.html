@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bagotville Masjid - Home</title>
     <meta name="description" content="Welcome to Bagotville Masjid, serving the Muslim community in West Bank Demerara, Guyana since 1913. Learn about our prayer times, events, and community services.">
+    
+    <!-- DNS Prefetch and Preconnect for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="fonts/playfair-display-v30-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="images/masjid-hero-light-400.avif" as="image" media="(max-width: 600px)" fetchpriority="high">
+    <link rel="preload" href="images/masjid-hero-light-400.webp" as="image" media="(max-width: 600px)" fetchpriority="high">
+    
+    <!-- Optimized Google Fonts with font-display: swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" crossorigin>
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </noscript>
+    
+    <!-- Meta tags -->
     <meta name="keywords" content="Bagotville, Bagotville Masjid, Guyana, West Bank Demerara, Muslim community, prayer times, Islamic events, donations, education">
     <meta name="author" content="Bagotville Masjid">
     <meta name="robots" content="index, follow">
@@ -12,35 +32,40 @@
     
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Bagotville Masjid - Home">
-    <meta property="og:description" content="Welcome to Bagotville Masjid, serving the Muslim community in West Bank Demerara, Guyana since 1913. Learn about our prayer times, events, and community services.">
-    <meta property="og:image" content="https://bagotvillemasjid.github.io/images/masjid-hero-light.webp">
+    <meta property="og:description" content="Welcome to Bagotville Masjid, serving the Muslim community in West Bank Demerara, Guyana since 1913.">
+    <meta property="og:image" content="https://bagotvillemasjid.github.io/images/masjid-hero-light-800.webp">
     <meta property="og:url" content="https://bagotvillemasjid.github.io/index.html">
     <meta property="og:type" content="website">
     
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Bagotville Masjid - Home">
-    <meta name="twitter:description" content="Welcome to Bagotville Masjid, serving the Muslim community in West Bank Demerara, Guyana since 1913. Learn about our prayer times, events, and community services.">
-    <meta name="twitter:image" content="https://bagotvillemasjid.github.io/images/masjid-hero-light.webp">
-    
-    <!-- Preload Google Fonts and set font-display: swap -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" crossorigin>
-    
-    <!-- Preload critical resources for LCP optimization -->
-    <link rel="preload" as="style" href="css/styles.css">
-    <link rel="preload" as="image" href="images/masjid-hero-light.webp" imagesrcset="images/masjid-hero-light.webp 1280w, images/masjid-hero-light-800.webp 800w" imagesizes="(max-width: 1280px) 100vw, 1280px" type="image/webp">
-    <link rel="preload" as="image" href="images/masjid-hero-light.jpg" imagesrcset="images/masjid-hero-light.jpg 1280w, images/masjid-hero-light-800.jpg 800w" imagesizes="(max-width: 1280px) 100vw, 1280px" type="image/jpeg">
-    <link rel="preload" as="image" href="images/masjid-hero-dark.webp" imagesrcset="images/masjid-hero-dark.webp 1280w, images/masjid-hero-dark-800.webp 800w" imagesizes="(max-width: 1280px) 100vw, 1280px" type="image/webp">
-    <link rel="preload" as="image" href="images/masjid-hero-dark.jpg" imagesrcset="images/masjid-hero-dark.jpg 1280w, images/masjid-hero-dark-800.jpg 800w" imagesizes="(max-width: 1280px) 100vw, 1280px" type="image/jpeg">
+    <meta name="twitter:description" content="Welcome to Bagotville Masjid, serving the Muslim community in West Bank Demerara, Guyana since 1913.">
+    <meta name="twitter:image" content="https://bagotvillemasjid.github.io/images/masjid-hero-light-800.webp">
     
     <!-- Inline Critical CSS for above-the-fold content -->
     <style>
         /* Critical CSS for hero, navigation, and h1 */
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #FF6F61;
+            --background-color: #F5F6F5;
+            --text-color: #2C3E50;
+            --light-gray: #E8ECEF;
+            --shadow-color: rgba(0, 0, 0, 0.15);
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
         .header {
-            background: linear-gradient(90deg, #007BFF, #FF6F61);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 20px var(--shadow-color);
             position: fixed;
             width: 100%;
             top: 0;
@@ -62,7 +87,7 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
         .hero {
-            background: linear-gradient(45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), #E8ECEF;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), var(--light-gray);
             padding: 6rem 2rem;
             text-align: center;
             position: relative;
@@ -81,7 +106,6 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.6;
-            transition: opacity 0.3s ease;
         }
         .hero-content {
             position: relative;
@@ -89,14 +113,14 @@
             padding: 2.5rem;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px var(--shadow-color);
             display: inline-block;
         }
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
-            color: #007BFF;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px var(--shadow-color);
             margin-bottom: 0.8rem;
         }
         .hero-content p {
@@ -104,19 +128,30 @@
             max-width: 400px;
             margin: 0 auto;
         }
-        /* Ensure basic text visibility while fonts load */
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #F5F6F5;
-            color: #2C3E50;
-            line-height: 1.6;
-            overflow-x: hidden;
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem 1rem;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+            .hero-content {
+                padding: 1.5rem;
+            }
         }
     </style>
     
-    <link rel="stylesheet" href="css/styles.css?v=1.0" media="all" onload="this.media='all'">
+    <!-- Non-critical CSS with media attribute for async loading -->
+    <link rel="stylesheet" href="css/styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="css/styles.css"></noscript>
 </head>
 <body>
     <header class="header">
@@ -148,33 +183,97 @@
     <main>
         <section class="hero">
             <div class="hero-image">
+                <!-- Light Theme Hero Image - Optimized with AVIF, WebP and responsive sizes -->
                 <picture>
+                    <!-- Mobile - Small Size -->
                     <source 
-                        srcset="images/masjid-hero-light.webp 1280w, images/masjid-hero-light-800.webp 800w" 
-                        sizes="(max-width: 1280px) 100vw, 1280px" 
-                        type="image/webp">
+                        media="(max-width: 600px)" 
+                        type="image/avif" 
+                        srcset="images/masjid-hero-light-400.avif">
                     <source 
-                        srcset="images/masjid-hero-light.jpg 1280w, images/masjid-hero-light-800.jpg 800w" 
-                        sizes="(max-width: 1280px) 100vw, 1280px" 
-                        type="image/jpeg">
+                        media="(max-width: 600px)" 
+                        type="image/webp" 
+                        srcset="images/masjid-hero-light-400.webp">
+                    <source 
+                        media="(max-width: 600px)" 
+                        srcset="images/masjid-hero-light-400.jpg">
+                    
+                    <!-- Tablet - Medium Size -->
+                    <source 
+                        media="(max-width: 1024px)" 
+                        type="image/avif" 
+                        srcset="images/masjid-hero-light-800.avif">
+                    <source 
+                        media="(max-width: 1024px)" 
+                        type="image/webp" 
+                        srcset="images/masjid-hero-light-800.webp">
+                    <source 
+                        media="(max-width: 1024px)" 
+                        srcset="images/masjid-hero-light-800.jpg">
+                    
+                    <!-- Desktop - Full Size -->
+                    <source 
+                        type="image/avif" 
+                        srcset="images/masjid-hero-light.avif">
+                    <source 
+                        type="image/webp" 
+                        srcset="images/masjid-hero-light.webp">
+                    
+                    <!-- Fallback -->
                     <img 
                         src="images/masjid-hero-light.jpg" 
                         alt="Bagotville Masjid Exterior (Light Theme)" 
-                        class="light-theme-image">
+                        class="light-theme-image"
+                        width="1280" 
+                        height="720"
+                        fetchpriority="high"
+                        loading="eager">
                 </picture>
+                
+                <!-- Dark Theme Hero Image - Optimized with AVIF, WebP and responsive sizes -->
                 <picture>
+                    <!-- Mobile - Small Size -->
                     <source 
-                        srcset="images/masjid-hero-dark.webp 1280w, images/masjid-hero-dark-800.webp 800w" 
-                        sizes="(max-width: 1280px) 100vw, 1280px" 
-                        type="image/webp">
+                        media="(max-width: 600px)" 
+                        type="image/avif" 
+                        srcset="images/masjid-hero-dark-400.avif">
                     <source 
-                        srcset="images/masjid-hero-dark.jpg 1280w, images/masjid-hero-dark-800.jpg 800w" 
-                        sizes="(max-width: 1280px) 100vw, 1280px" 
-                        type="image/jpeg">
+                        media="(max-width: 600px)" 
+                        type="image/webp" 
+                        srcset="images/masjid-hero-dark-400.webp">
+                    <source 
+                        media="(max-width: 600px)" 
+                        srcset="images/masjid-hero-dark-400.jpg">
+                    
+                    <!-- Tablet - Medium Size -->
+                    <source 
+                        media="(max-width: 1024px)" 
+                        type="image/avif" 
+                        srcset="images/masjid-hero-dark-800.avif">
+                    <source 
+                        media="(max-width: 1024px)" 
+                        type="image/webp" 
+                        srcset="images/masjid-hero-dark-800.webp">
+                    <source 
+                        media="(max-width: 1024px)" 
+                        srcset="images/masjid-hero-dark-800.jpg">
+                    
+                    <!-- Desktop - Full Size -->
+                    <source 
+                        type="image/avif" 
+                        srcset="images/masjid-hero-dark.avif">
+                    <source 
+                        type="image/webp" 
+                        srcset="images/masjid-hero-dark.webp">
+                    
+                    <!-- Fallback -->
                     <img 
                         src="images/masjid-hero-dark.jpg" 
                         alt="Bagotville Masjid Exterior (Dark Theme)" 
-                        class="dark-theme-image">
+                        class="dark-theme-image"
+                        width="1280" 
+                        height="720"
+                        loading="lazy">
                 </picture>
             </div>
             <div class="hero-content">
@@ -222,6 +321,7 @@
             <a href="#">Instagram</a>
         </div>
     </footer>
-    <script src="js/scripts.js?v=1.0" defer></script>
+    <!-- Defer non-critical JavaScript -->
+    <script src="js/scripts.js" defer></script>
 </body>
 </html>
