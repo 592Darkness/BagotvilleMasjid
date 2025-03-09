@@ -584,25 +584,22 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
     
-    // OPTION 2: Scheduled live sessions
-    // If you have regular scheduled live sessions, you can use this approach
-    function checkScheduledLiveStatus() {
-        const now = new Date();
-        const day = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        
-        // Example: Check if it's Friday (5) between 7:00 PM and 8:00 PM
-        // Modify this schedule according to your regular live sessions
-        const isFriday = day === 5;
-        const isEveningHour = hours >= 19 && hours < 20;
-        
-        if (isFriday && isEveningHour) {
-            showLiveNotification(true);
-        } else {
-            showLiveNotification(false);
-        }
+    // OPTION 2: Scheduled live sessions for daily 7:15 PM broadcasts
+function checkScheduledLiveStatus() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    
+    // Check if time is between 7:15 PM and 8:15 PM (daily live session)
+    // This will activate the notification at 7:15 PM and keep it active for 1 hour
+    const isLiveHour = (hours === 19 && minutes >= 15) || (hours === 20 && minutes < 15);
+    
+    if (isLiveHour) {
+        showLiveNotification(true);
+    } else {
+        showLiveNotification(false);
     }
+}
     
     // OPTION 3: Query parameter override for testing
     // Example URL: https://yourdomain.com/?fb_live=true
