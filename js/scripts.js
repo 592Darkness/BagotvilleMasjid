@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // =========== FACEBOOK INTEGRATION START ===========
     
-    // Update all Facebook links to the correct URL
+    // 1. Update all Facebook links to the correct URL
     const facebookLinks = document.querySelectorAll('.social-media a');
     facebookLinks.forEach(link => {
         if (link.textContent === 'Facebook') {
@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Create and insert Facebook Live notification component
+    // 2. Create and insert Facebook Live notification component
     const notificationHTML = `
         <div id="fb-live-notification" class="fb-live-notification" style="display: none;">
             <div class="notification-content">
@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.body.insertAdjacentHTML('afterbegin', notificationHTML);
     
-    // Add styles for the notification
+    // 3. Add styles for the notification
     const styleTag = document.createElement('style');
     styleTag.textContent = `
         .fb-live-notification {
@@ -552,7 +552,7 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(styleTag);
     
-    // Add event listener for close button
+    // 4. Add event listener for close button
     const closeButton = document.querySelector('.notification-close');
     if (closeButton) {
         closeButton.addEventListener('click', function() {
@@ -562,19 +562,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { passive: true });
     }
     
-    // Function to check Facebook Live status (example implementation)
-    function checkFacebookLiveStatus() {
-        // In a real implementation, you would use the Facebook Graph API
-        // This is a simplified example for demonstration purposes
-        
-        // For testing: Uncomment the next line to simulate a live state
-        // showLiveNotification(true);
-        
-        // Real implementation would make an API call to Facebook
-        // Since direct API calls need server-side implementation for proper auth,
-        // here's a placeholder for the logic:
-        
-        fetch('/api/check-facebook-live-status')
+    // 5. GitHub Pages compatible Live notification solutions
+    
+    // OPTION 1: Manual configuration using a JSON file
+    // Create a file named fb-live-status.json in your repository with content: {"isLive": false}
+    // When you go live, update this file to: {"isLive": true}
+    function checkManualLiveStatus() {
+        fetch('fb-live-status.json')
             .then(response => response.json())
             .then(data => {
                 if (data.isLive) {
@@ -583,9 +577,53 @@ document.addEventListener('DOMContentLoaded', function() {
                     showLiveNotification(false);
                 }
             })
-            .catch(error => console.error('Error checking Facebook live status:', error));
+            .catch(error => {
+                console.error('Error checking live status:', error);
+                // Fallback to scheduled check in case of error
+                checkScheduledLiveStatus();
+            });
     }
     
+    // OPTION 2: Scheduled live sessions
+    // If you have regular scheduled live sessions, you can use this approach
+    function checkScheduledLiveStatus() {
+        const now = new Date();
+        const day = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        
+        // Example: Check if it's Friday (5) between 7:00 PM and 8:00 PM
+        // Modify this schedule according to your regular live sessions
+        const isFriday = day === 5;
+        const isEveningHour = hours >= 19 && hours < 20;
+        
+        if (isFriday && isEveningHour) {
+            showLiveNotification(true);
+        } else {
+            showLiveNotification(false);
+        }
+    }
+    
+    // OPTION 3: Query parameter override for testing
+    // Example URL: https://yourdomain.com/?fb_live=true
+    function checkQueryParamOverride() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const liveParam = urlParams.get('fb_live');
+        
+        if (liveParam === 'true') {
+            showLiveNotification(true);
+        } 
+        // If param is explicitly set to false, hide notification
+        else if (liveParam === 'false') {
+            showLiveNotification(false);
+        }
+        // Otherwise, proceed with other checks
+        else {
+            checkManualLiveStatus();
+        }
+    }
+    
+    // Helper to show or hide the notification
     function showLiveNotification(isLive) {
         const notification = document.getElementById('fb-live-notification');
         if (!notification) return;
@@ -598,10 +636,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Check for Facebook live status periodically
-    // For production, you might want to use a more efficient approach like WebSockets
-    checkFacebookLiveStatus();
-    setInterval(checkFacebookLiveStatus, 5 * 60 * 1000); // Check every 5 minutes
+    // Start with query param check, which cascades to other methods if needed
+    checkQueryParamOverride();
+    
+    // Periodically check status (every 5 minutes)
+    setInterval(checkQueryParamOverride, 5 * 60 * 1000);
     
     // =========== FACEBOOK INTEGRATION END ===========
 });
