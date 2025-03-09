@@ -449,4 +449,159 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Run cache cleanup once per visit
     cleanupOldCache();
+    
+    // =========== FACEBOOK INTEGRATION START ===========
+    
+    // Update all Facebook links to the correct URL
+    const facebookLinks = document.querySelectorAll('.social-media a');
+    facebookLinks.forEach(link => {
+        if (link.textContent === 'Facebook') {
+            link.href = 'https://www.facebook.com/profile.php?id=100081668231878';
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        }
+    });
+
+    // Create and insert Facebook Live notification component
+    const notificationHTML = `
+        <div id="fb-live-notification" class="fb-live-notification" style="display: none;">
+            <div class="notification-content">
+                <span class="live-icon">🔴 LIVE</span>
+                <span class="notification-message">We're live on Facebook now!</span>
+                <a href="https://www.facebook.com/profile.php?id=100081668231878" target="_blank" rel="noopener noreferrer" class="notification-link">Join us</a>
+                <button class="notification-close" aria-label="Close notification">×</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('afterbegin', notificationHTML);
+    
+    // Add styles for the notification
+    const styleTag = document.createElement('style');
+    styleTag.textContent = `
+        .fb-live-notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            z-index: 9999;
+            max-width: 300px;
+            animation: slideInRight 0.5s ease-out;
+            transform-origin: top right;
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .live-icon {
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .notification-link {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+        
+        .notification-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .notification-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: auto;
+            padding: 0;
+            line-height: 1;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .dark-theme .fb-live-notification {
+            background: var(--secondary-color);
+        }
+        
+        @media (max-width: 480px) {
+            .fb-live-notification {
+                top: 80px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+    `;
+    document.head.appendChild(styleTag);
+    
+    // Add event listener for close button
+    const closeButton = document.querySelector('.notification-close');
+    if (closeButton) {
+        closeButton.addEventListener('click', function() {
+            document.getElementById('fb-live-notification').style.display = 'none';
+            // Save state in session storage so it doesn't show again this session
+            sessionStorage.setItem('fbLiveNotificationClosed', 'true');
+        }, { passive: true });
+    }
+    
+    // Function to check Facebook Live status (example implementation)
+    function checkFacebookLiveStatus() {
+        // In a real implementation, you would use the Facebook Graph API
+        // This is a simplified example for demonstration purposes
+        
+        // For testing: Uncomment the next line to simulate a live state
+        // showLiveNotification(true);
+        
+        // Real implementation would make an API call to Facebook
+        // Since direct API calls need server-side implementation for proper auth,
+        // here's a placeholder for the logic:
+        
+        fetch('/api/check-facebook-live-status')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isLive) {
+                    showLiveNotification(true);
+                } else {
+                    showLiveNotification(false);
+                }
+            })
+            .catch(error => console.error('Error checking Facebook live status:', error));
+    }
+    
+    function showLiveNotification(isLive) {
+        const notification = document.getElementById('fb-live-notification');
+        if (!notification) return;
+        
+        // Only show notification if it wasn't closed this session
+        if (isLive && sessionStorage.getItem('fbLiveNotificationClosed') !== 'true') {
+            notification.style.display = 'block';
+        } else {
+            notification.style.display = 'none';
+        }
+    }
+    
+    // Check for Facebook live status periodically
+    // For production, you might want to use a more efficient approach like WebSockets
+    checkFacebookLiveStatus();
+    setInterval(checkFacebookLiveStatus, 5 * 60 * 1000); // Check every 5 minutes
+    
+    // =========== FACEBOOK INTEGRATION END ===========
 });
