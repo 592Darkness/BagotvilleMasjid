@@ -592,7 +592,7 @@ function checkScheduledLiveStatus() {
     
     // Check if time is between 7:15 PM and 8:15 PM (daily live session)
     // This will activate the notification at 7:15 PM and keep it active for 1 hour
-    const isLiveHour = (hours === 09 && minutes >= 40) || (hours === 20 && minutes < 15);
+    const isLiveHour = (hours === 9 && minutes >= 45) || (hours === 20 && minutes < 15);
     
     if (isLiveHour) {
         showLiveNotification(true);
