@@ -584,54 +584,25 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
     
-    // OPTION 2: Scheduled live sessions for daily 7:15 PM broadcasts
+    // OPTION 2: Test schedule for 9:50 AM (for testing purposes)
 function checkScheduledLiveStatus() {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
     
-    // Check if time is between 7:15 PM and 8:15 PM (daily live session)
-    // This will activate the notification at 7:15 PM and keep it active for 1 hour
-    const isLiveHour = (hours === 9 && minutes >= 45) || (hours === 20 && minutes < 15);
+    // Check if time is between 9:50 AM and 10:50 AM (test session)
+    // This will activate the notification at 9:50 AM and keep it active for 1 hour
+    const isLiveHour = (hours === 9 && minutes >= 50) || (hours === 10 && minutes < 50);
+    
+    console.log("Time check:", hours + ":" + minutes, "Is live hour:", isLiveHour);
     
     if (isLiveHour) {
         showLiveNotification(true);
+        console.log("Live notification should be showing (by schedule)");
     } else {
         showLiveNotification(false);
     }
 }
-    
-    // OPTION 3: Query parameter override for testing
-    // Example URL: https://yourdomain.com/?fb_live=true
-    function checkQueryParamOverride() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const liveParam = urlParams.get('fb_live');
-        
-        if (liveParam === 'true') {
-            showLiveNotification(true);
-        } 
-        // If param is explicitly set to false, hide notification
-        else if (liveParam === 'false') {
-            showLiveNotification(false);
-        }
-        // Otherwise, proceed with other checks
-        else {
-            checkManualLiveStatus();
-        }
-    }
-    
-    // Helper to show or hide the notification
-    function showLiveNotification(isLive) {
-        const notification = document.getElementById('fb-live-notification');
-        if (!notification) return;
-        
-        // Only show notification if it wasn't closed this session
-        if (isLive && sessionStorage.getItem('fbLiveNotificationClosed') !== 'true') {
-            notification.style.display = 'block';
-        } else {
-            notification.style.display = 'none';
-        }
-    }
     
     // Start with query param check, which cascades to other methods if needed
     checkQueryParamOverride();
